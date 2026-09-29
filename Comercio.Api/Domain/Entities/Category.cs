@@ -2,6 +2,11 @@ namespace Comercio.Api.Domain.Entities;
 
 public sealed class Category
 {
+    private Category()
+    {
+        Name = null!;
+    }
+
     public Category(string name, string? description)
     {
         if (string.IsNullOrWhiteSpace(name))
