@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: comercio-postgres
+    environment:
+      POSTGRES_DB: comercio
+      POSTGRES_USER: comercio
+      POSTGRES_PASSWORD: comercio_dev_password
+    ports:
+      - "5437:5432"
+    volumes:
+      - comercio_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U comercio -d comercio"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  comercio_postgres_data:
