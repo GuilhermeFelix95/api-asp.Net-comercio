@@ -4,6 +4,11 @@ public sealed class Category
 {
     public Category(string name, string? description)
     {
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            throw new ArgumentException("O nome da categoria e obrigatorio.", nameof(name));
+        }
+
         Id = Guid.NewGuid();
         Name = name.Trim();
         Description = description?.Trim();
