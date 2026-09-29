@@ -1,8 +1,13 @@
+using Comercio.Api.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddDbContext<ComercioDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Comercio")));
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
