@@ -14,4 +14,12 @@ public class CategoryTests
         Assert.Equal("Produtos para beber", category.Description);
         Assert.True(category.IsActive);
     }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData("   ")]
+    public void Should_reject_empty_name(string name)
+    {
+        Assert.Throws<ArgumentException>(() => new Category(name, null));
+    }
 }
